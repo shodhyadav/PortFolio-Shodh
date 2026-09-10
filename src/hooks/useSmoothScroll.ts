@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 
 import { gsap, ScrollTrigger, prefersReducedMotion } from "../utils/motion";
+import { isPhone } from "../utils/device";
 
 let lenisInstance: Lenis | null = null;
 
@@ -22,7 +23,7 @@ export function scrollToSection(target: string) {
  */
 export default function useSmoothScroll() {
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    if (prefersReducedMotion() || isPhone()) return;
 
     const lenis = new Lenis({
       duration: 1.1,

@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 
 import { gsap, prefersReducedMotion } from "../../utils/motion";
+import { isPhone } from "../../utils/device";
 
 export default function useHeroScroll() {
   useEffect(() => {
     const hero = document.querySelector(".hero");
-    if (!hero || prefersReducedMotion()) return;
+    if (!hero || prefersReducedMotion() || isPhone()) return;
 
     const ctx = gsap.context(() => {
       const title = hero.querySelector(".hero-title");

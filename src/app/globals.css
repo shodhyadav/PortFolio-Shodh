@@ -144,6 +144,43 @@
   animation: floatB 20s ease-in-out infinite;
 }
 
+/*
+ * Phone-only performance (<=767px). Tablet and desktop (>=768px) are
+ * intentionally untouched so their cinematic look stays identical.
+ */
+@media (max-width: 767px) {
+  /* Kill continuous repaints that tank scroll performance on phones. */
+  .grain {
+    display: none !important;
+  }
+
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .float-a,
+  .float-b {
+    animation: none !important;
+  }
+
+  /* Oversized blur radii are the biggest GPU cost — shrink them hard. */
+  .glow-1,
+  .glow-2,
+  .glow-3 {
+    filter: blur(60px) !important;
+  }
+
+  .float-a,
+  .float-b {
+    filter: blur(70px) !important;
+  }
+
+  /* backdrop-filter recomposites every scroll frame; drop it on phones. */
+  .backdrop-blur-xl,
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
 /* Respect users who ask the OS to minimise motion. */
 @media (prefers-reduced-motion: reduce) {
   *,

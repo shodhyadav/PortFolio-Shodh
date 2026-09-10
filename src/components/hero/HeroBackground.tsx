@@ -3,13 +3,14 @@
 import { useEffect, useRef } from "react";
 
 import { gsap, prefersReducedMotion } from "../../utils/motion";
+import { isPhone } from "../../utils/device";
 
 export default function HeroBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || prefersReducedMotion()) return;
+    if (!container || prefersReducedMotion() || isPhone()) return;
 
     const ctx = gsap.context(() => {
       const glow1 = container.querySelector(".glow-1") as HTMLElement;

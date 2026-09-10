@@ -42,7 +42,6 @@ export default function HeroProfile() {
             src="/images/shodh.jpg"
             alt={profile.name}
             fill
-            priority
             sizes="(max-width: 1024px) 100vw, 380px"
             className="object-cover object-top"
           />
